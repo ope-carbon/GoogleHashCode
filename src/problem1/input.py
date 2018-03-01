@@ -37,6 +37,6 @@ class Input:
             rides.append(Ride(rideId=rideId, startPosition=Position(row=int(rawRide[0]), column=int(rawRide[1])), endPosition=Position(row=int(rawRide[2]), column=int(rawRide[3])), earliestStartTime=int(rawRide[4]), latestFinishTime=int(rawRide[5]), bonusFactor=bonusFactor))
             rideId += 1
         vehicles = []
-        for vehicleId in range(int(meta[2])):
+        for vehicleId in range(1, int(meta[2])):
             vehicles.append(Vehicle(vehicleId=vehicleId, position=Position(row=0, column=0)))
         return cls(grid=grid, vehicles=vehicles, rides=rides, bonusFactor=bonusFactor, steps=int(meta[5]))
