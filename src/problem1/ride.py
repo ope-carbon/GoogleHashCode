@@ -1,13 +1,14 @@
 
 class Ride:
 
-    def __init__(self, rideId, startPosition, endPosition, earliestStartTime, latestFinishTime, bonusFactor):
+    def __init__(self, rideId, startPosition, endPosition, earliestStartTime, latestFinishTime, bonusFactor, completed=False):
         self.rideId = rideId
         self.startPosition = startPosition
         self.endPosition = endPosition
         self.earliestStartTime = earliestStartTime
         self.latestFinishTime = latestFinishTime
         self.bonusFactor = bonusFactor
+        self.completed = completed
 
     def __eq__(self, other):
         return self.rideId == other.rideId

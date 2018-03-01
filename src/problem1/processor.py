@@ -1,5 +1,5 @@
 from .output import Output
-import numpy
+import numpy as np
 
 class Processor:
 
@@ -19,26 +19,36 @@ class Processor:
         return bestRide
 
     def get_score(self, vehicle, ride, steps, bonusFactor):
+        if ride.completed:
+            return 0
         startTimeFromNow = ride.earliestStartTime - vehicle.currentTime
-        waitTime = vehicle.position.distance_to(ride.startPosition) - startTimeFromNow
-        rideCannotFinish = waitTime + ride.length > ride.latestFinishTime
+        waitTime = max(vehicle.position.distance_to(ride.startPosition) - startTimeFromNow, 0)
+        rideCannotFinish = (ride.earliestStartTime + waitTime + ride.length) > ride.latestFinishTime
         if rideCannotFinish:
             return 0
         return ride.length + (bonusFactor if waitTime == 0 else 0)
 
-    def process(self, input_):
+    def update_matrix(self, matrix, vehicles, rides):
+        pass
 
-        vehicles = numpy.array(input_.vehicles)
-        rides = numpy.array(input_.rides)
-        matrix = numpy.array((len(vehicles), len(rides)))
-        print(vehicles)
-        print(rides)
-        print(matrix)
+    def process(self, input_):
+        while True:
+            vehicles = np.array(input_.vehicles)
+            rides = np.array(input_.rides)
+            matrix = np.zeros((len(vehicles), len(rides)))
+            print(matrix)
+            self.update_matrix(matrix, vehicles, rides)
+            print(matrix)
+            vehicleIndex, rideIndex = np.unravel_index(matrix.argmax(), matrix.shape)
+            ride = rides[rideIndex]
+            vehicle = vehicle[vehicleIndex]
+            ride.completed = True
+            vehicle.currentTime =
+            print(vehicleIndex, rideIndex)
 
 
 
         # availableRides = set(input_.rides)
-        # vehiclesRides = {vehicle: [] for vehicle in input_.vehicles}
         # vehicleNextAvailable = {vehicle: 0 for vehicle in input_.vehicles}
         # time = 0
         # while time < input_.steps:
