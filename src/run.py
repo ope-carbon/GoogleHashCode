@@ -1,6 +1,5 @@
-from .input import Input
-from .output import Output
-from .processor import Processor
+from problem1.input import Input
+from problem1.processor import Processor
 
 # assume problems
 problems = ['a', 'b', 'c', 'd', 'e']
