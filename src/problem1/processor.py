@@ -18,12 +18,23 @@ class Processor:
                 bestRide = ride
         return bestRide
 
-    def get_score(self, vehicle, ride, steps):
-        return vheic
+    def get_score(self, vehicle, ride, steps, bonusFactor):
+        startTimeFromNow = ride.earliestStartTime - vehicle.currentTime
+        waitTime = vehicle.position.distance_to(ride.startPosition) - startTimeFromNow
+        rideCannotFinish = waitTime + ride.length > ride.latestFinishTime
+        if rideCannotFinish:
+            return 0
+        return ride.length + (bonusFactor if waitTime == 0 else 0)
 
     def process(self, input_):
 
-        matrix = numpy.array((len(input_.vehicles), len(input_.rides)))
+        vehicles = numpy.array(input_.vehicles)
+        rides = numpy.array(input_.rides)
+        matrix = numpy.array((len(vehicles), len(rides)))
+        print(vehicles)
+        print(rides)
+        print(matrix)
+
 
 
         # availableRides = set(input_.rides)

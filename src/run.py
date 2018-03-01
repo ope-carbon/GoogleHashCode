@@ -3,7 +3,7 @@ from problem1.output import Output
 from problem1.processor import Processor
 
 # assume problems
-problems = ['a', 'b', 'c', 'd', 'e']
+problems = ['a']#, 'b', 'c', 'd', 'e']
 
 for problem in problems:
     print(problem)
