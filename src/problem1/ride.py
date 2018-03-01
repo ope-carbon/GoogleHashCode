@@ -1,7 +1,8 @@
 
 class Ride:
 
-    def __init__(self, startPosition, endPosition, earliestStartTime, latestFinishTime, bonusFactor):
+    def __init__(self, rideId, startPosition, endPosition, earliestStartTime, latestFinishTime, bonusFactor):
+        self.rideId = rideId
         self.startPosition = startPosition
         self.endPosition = endPosition
         self.earliestStartTime = earliestStartTime
