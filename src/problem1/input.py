@@ -24,17 +24,17 @@ class Input:
         with open(filename, 'r+') as file:
             content = file.readlines()
         meta = content[0].strip().split()
-        bonusFactor = meta[4]
-        noOfRides = meta[3]
-        grid = Grid(rows=meta[0], columns=meta[1])
+        bonusFactor = int(meta[4])
+        noOfRides = int(meta[3])
+        grid = Grid(rows=int(meta[0]), columns=int(meta[1]))
         rawRides = content[1:]
-        if len(rawRides) == len(noOfRides):
+        if len(rawRides) != noOfRides:
             raise Exception('rides missing')
         rides = []
         rideId = 0
         for rawRide in rawRides:
             rawRide = rawRide.strip().split()
-            rides.append(Ride(rideId=rideId, startPosition=Position(row=rawRide[0], column=rawRide[1]), endPosition=Position(row=rawRide[2], column=rawRide[3]), earliestStartTime=rawRide[4], latestFinishTime=rawRide[5], bonusFactor=bonusFactor))
+            rides.append(Ride(rideId=rideId, startPosition=Position(row=int(rawRide[0]), column=int(rawRide[1])), endPosition=Position(row=int(rawRide[2]), column=int(rawRide[3])), earliestStartTime=int(rawRide[4]), latestFinishTime=int(rawRide[5]), bonusFactor=bonusFactor))
             rideId += 1
         vehicles = []
         for vehicleId in range(int(meta[2])):
