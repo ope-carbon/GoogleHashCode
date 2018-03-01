@@ -27,3 +27,6 @@ pipdeptree.log
 
 # Vim
 *.swp
+
+Pyc
+*.pyc
