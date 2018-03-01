@@ -12,6 +12,7 @@ nosetests.xml
 .noseids
 pylint.log
 pipdeptree.log
+*.pyc
 
 # PyCharm
 .idea/

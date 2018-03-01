@@ -18,6 +18,6 @@ class Processor:
                     continue
                 availableRides.remove(ride)
                 vehicleRides[vehicle].append(ride)
-                vehicleNextAvailable[vehicle] = ride.length + max(vehicle.position.distance_to(ride.startPosition), ride.startTime)
+                vehicleNextAvailable[vehicle] = ride.length + max(vehicle.position.distance_to(ride.earliestStartTime), ride.startTime)
             time += 1
         return Output(vehicleRides=vehicleRides)
