@@ -1,10 +1,17 @@
+from .position import Position
+
+class CompletedRide:
+
+    def __init__(self, ride, startTime, endTime):
+        self.ride = ride
+        self.startTime = startTime
+        self.endTime = endTime
+
 
 class Vehicle:
 
-    def __init__(self, vehicleId, position, currentTime):
+    def __init__(self, vehicleId):
         self.vehicleId = vehicleId
-        self.position = position
-        self.currentTime = currentTime
         self.ridesCompleted = []
 
     def __eq__(self, other):
@@ -19,7 +26,29 @@ class Vehicle:
     def __str__(self):
         return self.__repr__()
 
-    def do_ride(self, ride):
-        self.currentTime = max(self.currentTime + self.position.distance_to(ride.startPosition), ride.earliestStartTime) + ride.length
-        self.position = ride.endPosition
-        self.ridesCompleted.append(ride)
+    def earliest_possible_start_time(self, ride, steps):
+        firstRideAfterTime = self.first_ride_after_time(time=ride.latestFinishTime)
+        lastRideBeforeTime = self.last_ride_before_time(time=ride.earliestStartTime)
+        earliestPossibleStartTime = (lastRideBeforeTime.ride.endPosition.distance_to(ride.startPosition) + lastRideBeforeTime.endTime) if lastRideBeforeTime else Position(0, 0).distance_to(ride.startPosition)
+        latestPossibleStartTime = ((firstRideAfterTime.startTime + ride.endPosition.distance_to(firstRideAfterTime.ride.startPosition)) if firstRideAfterTime else steps) - ride.length
+        return earliestPossibleStartTime if earliestPossibleStartTime <= latestPossibleStartTime else None
+
+    def do_ride(self, ride, steps):
+        earliestPossibleStartTime = self.earliest_possible_start_time(ride, steps)
+        startTime = max(earliestPossibleStartTime, ride.earliestStartTime)
+        completedRide = CompletedRide(ride=ride, startTime=startTime, endTime=startTime + ride.length)
+        firstRideAfterTime = self.first_ride_after_time(time=ride.latestFinishTime)
+        index = self.ridesCompleted.index(firstRideAfterTime) if firstRideAfterTime else 0
+        self.ridesCompleted.insert(index, completedRide)
+
+    def first_ride_after_time(self, time):
+        for completedRide in self.ridesCompleted:
+            if completedRide.startTime >= time:
+                return completedRide
+        return None
+
+    def last_ride_before_time(self, time):
+        for completedRide in self.ridesCompleted:
+            if completedRide.endTime <= time:
+                return completedRide
+        return None
