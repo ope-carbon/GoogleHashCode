@@ -9,7 +9,7 @@ class Processor:
 
     def process(self, input_):
         availableRides = set(input_.rides)
-        vehicleRides = {vehicle: [] for vehicle in input_.vehicles}
+        vehiclesRides = {vehicle: [] for vehicle in input_.vehicles}
         vehicleNextAvailable = {vehicle: 0 for vehicle in input_.vehicles}
         time = 0
         while time < input_.steps:
@@ -19,7 +19,7 @@ class Processor:
                 if not ride:
                     continue
                 availableRides.remove(ride)
-                vehicleRides[vehicle].append(ride)
+                vehiclesRides[vehicle].append(ride)
                 vehicleNextAvailable[vehicle] = ride.length + max(vehicle.position.distance_to(ride.startPosition), ride.earliestStartTime)
             time += 1
-        return Output(vehicleRides=vehicleRides)
+        return Output(vehiclesRides=vehiclesRides)
