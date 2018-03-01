@@ -10,3 +10,6 @@ class Position:
 
     def __str__(self):
         return self.__repr__()
+
+    def distance_to(self, otherPosition):
+        return abs(self.row - otherPosition.row) + abs(self.column - otherPosition.column)
