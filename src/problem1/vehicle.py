@@ -1,9 +1,10 @@
 
 class Vehicle:
 
-    def __init__(self, vehicleId, position):
+    def __init__(self, vehicleId, position, currentTime):
         self.vehicleId = vehicleId
         self.position = position
+        self.currentTime = currentTime
 
     def __eq__(self, other):
         return self.vehicleId == other.vehicleId
