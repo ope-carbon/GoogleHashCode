@@ -39,4 +39,4 @@ class Input:
         vehicles = []
         for vehicleId in range(int(meta[2])):
             vehicles.append(Vehicle(vehicleId=vehicleId, position=Position(row=0, column=0)))
-        return cls(grid=grid, vehicles=vehicles, rides=rides, bonusFactor=bonusFactor, steps=meta[5])
+        return cls(grid=grid, vehicles=vehicles, rides=rides, bonusFactor=bonusFactor, steps=int(meta[5]))
