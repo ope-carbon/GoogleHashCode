@@ -8,6 +8,12 @@ class Ride:
         self.latestFinishTime = latestFinishTime
         self.bonusFactor = bonusFactor
 
+    def __repr__(self):
+        return '{cls}(startPosition={startPosition}, endPosition={endPosition}, earliestStartTime={earliestStartTime}, latestFinishTime={latestFinishTime}, bonusFactor={bonusFactor})'.format(cls=self.__class__.__name__, startPosition=self.startPosition, endPosition=self.endPosition, earliestStartTime=self.earliestStartTime, latestFinishTime=self.latestFinishTime, bonusFactor=self.bonusFactor)
+
+    def __str__(self):
+        return self.__repr__()
+
     @property
     def potentialBonus(self):
         return self.bonusFactor * self.length
