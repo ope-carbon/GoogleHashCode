@@ -18,6 +18,9 @@ class Processor:
         return bestRide
 
     def process(self, input_):
+
+        matrix = 
+
         availableRides = set(input_.rides)
         vehiclesRides = {vehicle: [] for vehicle in input_.vehicles}
         vehicleNextAvailable = {vehicle: 0 for vehicle in input_.vehicles}
