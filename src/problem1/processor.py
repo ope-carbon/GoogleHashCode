@@ -7,10 +7,10 @@ class Processor:
         highestPoints = 0
         for ride in availableRides:
             startTimeFromNow = ride.earliestStartTime - currentTime
-            waitTime = startTimeFromNow - vehicle.position.distance_to(ride.startPosition)
-            if waitTime + ride.length > ride.lastestFinishTime:
+            waitTime = vehicle.position.distance_to(ride.startPosition) - startTimeFromNow
+            if waitTime + ride.length >= ride.latestFinishTime:
                 continue
-            points = ride.length + bonusFactor * (1 if waitTime == 0 else 0) +
+            points = ride.length + (bonusFactor if waitTime == 0 else 0)
             if points > highestPoints:
                 highestPoints = points
                 bestRide = ride
