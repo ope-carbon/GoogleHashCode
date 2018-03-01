@@ -14,4 +14,4 @@ class Ride:
 
     @property
     def length(self):
-        return abs(self.startPosition.row - self.endPosition.row) + abs(self.startPosition.column - self.endPosition.column)
+        return self.startPosition.distance_to(otherPosition=self.endPosition)
