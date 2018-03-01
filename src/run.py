@@ -5,7 +5,6 @@ from problem1.processor import Processor
 problems = ['a', 'b', 'c', 'd', 'e']
 
 for problem in problems:
-    _input = Input.fromFile('input_{}.txt'.format(problem))
+    _input = Input.from_file('input_{}.txt'.format(problem))
     output = Processor().process(input=_input)
-    outputFilename = 'output_{}.txt'.format(problem)
-    # Create output file
+    output.write_to_file('output_{}.txt'.format(problem))
