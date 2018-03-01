@@ -8,6 +8,9 @@ class Vehicle:
     def __eq__(self, other):
         return self.vehicleId == other.vehicleId
 
+    def __hash__(self):
+        return hash(self.vehicleId)
+
     def __repr__(self):
         return '{cls}(vehicleId={vehicleId}, position={position})'.format(cls=self.__class__.__name__, vehicleId=self.vehicleId, position=self.position)
 

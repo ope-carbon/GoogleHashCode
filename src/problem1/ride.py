@@ -12,6 +12,9 @@ class Ride:
     def __eq__(self, other):
         return self.rideId == other.rideId
 
+    def __hash__(self):
+        return hash(self.rideId)
+
     def __repr__(self):
         return '{cls}(rideId={rideId}, startPosition={startPosition}, endPosition={endPosition}, earliestStartTime={earliestStartTime}, latestFinishTime={latestFinishTime}, bonusFactor={bonusFactor})'.format(cls=self.__class__.__name__, rideId=self.rideId, startPosition=self.startPosition, endPosition=self.endPosition, earliestStartTime=self.earliestStartTime, latestFinishTime=self.latestFinishTime, bonusFactor=self.bonusFactor)
 
