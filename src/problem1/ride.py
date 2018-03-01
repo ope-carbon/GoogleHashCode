@@ -9,6 +9,9 @@ class Ride:
         self.latestFinishTime = latestFinishTime
         self.bonusFactor = bonusFactor
 
+    def __eq__(self, other):
+        return self.rideId == other.rideId
+
     def __repr__(self):
         return '{cls}(startPosition={startPosition}, endPosition={endPosition}, earliestStartTime={earliestStartTime}, latestFinishTime={latestFinishTime}, bonusFactor={bonusFactor})'.format(cls=self.__class__.__name__, startPosition=self.startPosition, endPosition=self.endPosition, earliestStartTime=self.earliestStartTime, latestFinishTime=self.latestFinishTime, bonusFactor=self.bonusFactor)
 

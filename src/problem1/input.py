@@ -31,6 +31,7 @@ class Input:
         rides = []
         rideId = 1
         for rawRide in rawRides:
+            print(rawRide)
             rides.append(Ride(rideId=rideId, startPosition=Position(row=rawRide[0], column=rawRide[1]), endPosition=Position(row=rawRide[2], column=rawRide[3]), earliestStartTime=rawRide[4], latestFinishTime=rawRide[5], bonusFactor=rawRide[0]))
             rideId += 1
         return cls(grid=grid, vehicles=meta[2], rides=rides, bonusFactor=meta[4], steps=meta[5])
