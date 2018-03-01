@@ -13,7 +13,7 @@ class Ride:
         return self.rideId == other.rideId
 
     def __repr__(self):
-        return '{cls}(startPosition={startPosition}, endPosition={endPosition}, earliestStartTime={earliestStartTime}, latestFinishTime={latestFinishTime}, bonusFactor={bonusFactor})'.format(cls=self.__class__.__name__, startPosition=self.startPosition, endPosition=self.endPosition, earliestStartTime=self.earliestStartTime, latestFinishTime=self.latestFinishTime, bonusFactor=self.bonusFactor)
+        return '{cls}(rideId={rideId}, startPosition={startPosition}, endPosition={endPosition}, earliestStartTime={earliestStartTime}, latestFinishTime={latestFinishTime}, bonusFactor={bonusFactor})'.format(cls=self.__class__.__name__, rideId=self.rideId, startPosition=self.startPosition, endPosition=self.endPosition, earliestStartTime=self.earliestStartTime, latestFinishTime=self.latestFinishTime, bonusFactor=self.bonusFactor)
 
     def __str__(self):
         return self.__repr__()

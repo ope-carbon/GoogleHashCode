@@ -1,4 +1,5 @@
 from problem1.position import Position
+from problem1.vehicle import Vehicle
 from .ride import Ride
 from .grid import Grid
 
@@ -22,16 +23,19 @@ class Input:
     def from_file(cls, filename):
         with open(filename, 'r+') as file:
             content = file.readlines()
-        meta = content[0]
+        meta = content[0].strip().split()
         noOfRides = meta[3]
         grid = Grid(rows=meta[0], columns=meta[1])
         rawRides = content[1:]
         if len(rawRides) == len(noOfRides):
             raise Exception('rides missing')
         rides = []
-        rideId = 1
+        rideId = 0
         for rawRide in rawRides:
-            print(rawRide)
+            rawRide = rawRide.strip().split()
             rides.append(Ride(rideId=rideId, startPosition=Position(row=rawRide[0], column=rawRide[1]), endPosition=Position(row=rawRide[2], column=rawRide[3]), earliestStartTime=rawRide[4], latestFinishTime=rawRide[5], bonusFactor=rawRide[0]))
             rideId += 1
-        return cls(grid=grid, vehicles=meta[2], rides=rides, bonusFactor=meta[4], steps=meta[5])
+        vehicles = []
+        for vehicleId in range(int(meta[2])):
+            vehicles.append(Vehicle(vehicleId=vehicleId, position=Position(row=0, column=0)))
+        return cls(grid=grid, vehicles=vehicles, rides=rides, bonusFactor=meta[4], steps=meta[5])
