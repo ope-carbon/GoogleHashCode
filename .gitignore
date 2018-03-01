@@ -1,0 +1,29 @@
+# Mac
+*.DS_Store
+
+# Python
+__pycache__/
+eggs/
+dist/
+build/
+*.egg-info/
+.env*
+nosetests.xml
+.noseids
+pylint.log
+pipdeptree.log
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+
+# Autoenv
+.activate
+
+# Protobufs
+*_pb2.py
+
+# Vim
+*.swp
