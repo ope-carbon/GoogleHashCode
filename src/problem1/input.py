@@ -29,4 +29,4 @@ class Input:
         if len(rawRides) == len(noOfRides):
             raise Exception('rides missing')
         rides = [Ride(startPosition=Position(row=rawRide[0], column=rawRide[1]), endPosition=Position(row=rawRide[2], column=rawRide[3]), earliestStartTime=rawRide[4], latestFinishTime=rawRide[5], bonusFactor=rawRide[0]) for rawRide in rawRides]
-        return cls(grid=grid, vehicles=meta[2], rides=[], bonusFactor=meta[4], steps=meta[5])
+        return cls(grid=grid, vehicles=meta[2], rides=rides, bonusFactor=meta[4], steps=meta[5])
