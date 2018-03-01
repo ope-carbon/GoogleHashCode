@@ -3,6 +3,8 @@ from .output import Output
 class Processor:
 
     def find_best_ride(self, vehicle, availableRides):
+        if len(availableRides) == 0:
+            return None
         return list(availableRides)[0]
 
     def process(self, input_):
