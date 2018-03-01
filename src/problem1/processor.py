@@ -1,4 +1,5 @@
 from .output import Output
+import numpy
 
 class Processor:
 
@@ -17,26 +18,30 @@ class Processor:
                 bestRide = ride
         return bestRide
 
+    def get_score(self, vehicle, ride, steps):
+        return vheic
+
     def process(self, input_):
 
-        matrix = 
+        matrix = numpy.array((len(input_.vehicles), len(input_.rides)))
 
-        availableRides = set(input_.rides)
-        vehiclesRides = {vehicle: [] for vehicle in input_.vehicles}
-        vehicleNextAvailable = {vehicle: 0 for vehicle in input_.vehicles}
-        time = 0
-        while time < input_.steps:
-            if len(availableRides) == 0:
-                break
-            availableVehicles = {vehicle for vehicle, availableTime in vehicleNextAvailable.items() if availableTime <= time}
-            for vehicle in availableVehicles:
-                ride = self.find_best_ride(currentTime=time, timeLeft=input_.steps-time, vehicle=vehicle, availableRides=availableRides, bonusFactor=input_.bonusFactor)
-                # print(vehicle, ride)
-                if not ride:
-                    continue
-                availableRides.remove(ride)
-                vehicle.position = ride.endPosition
-                vehiclesRides[vehicle].append(ride)
-                vehicleNextAvailable[vehicle] = ride.length + max(vehicle.position.distance_to(ride.startPosition), ride.earliestStartTime)
-            time += 1
-        return Output(vehiclesRides=vehiclesRides)
+
+        # availableRides = set(input_.rides)
+        # vehiclesRides = {vehicle: [] for vehicle in input_.vehicles}
+        # vehicleNextAvailable = {vehicle: 0 for vehicle in input_.vehicles}
+        # time = 0
+        # while time < input_.steps:
+        #     if len(availableRides) == 0:
+        #         break
+        #     availableVehicles = {vehicle for vehicle, availableTime in vehicleNextAvailable.items() if availableTime <= time}
+        #     for vehicle in availableVehicles:
+        #         ride = self.find_best_ride(currentTime=time, timeLeft=input_.steps-time, vehicle=vehicle, availableRides=availableRides, bonusFactor=input_.bonusFactor)
+        #         # print(vehicle, ride)
+        #         if not ride:
+        #             continue
+        #         availableRides.remove(ride)
+        #         vehicle.position = ride.endPosition
+        #         vehiclesRides[vehicle].append(ride)
+        #         vehicleNextAvailable[vehicle] = ride.length + max(vehicle.position.distance_to(ride.startPosition), ride.earliestStartTime)
+        #     time += 1
+        return Output(vehiclesRides={})
