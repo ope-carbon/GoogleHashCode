@@ -1,6 +1,6 @@
 
 class Position:
 
-    def __init__(self, r=0, c=0):
-        self.r = r
-        self.c = c
+    def __init__(self, row=0, column=0):
+        self.row = row
+        self.column = column
