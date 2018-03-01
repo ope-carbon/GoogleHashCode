@@ -23,7 +23,7 @@ class Input:
     def from_file(cls, filename):
         with open(filename, 'r+') as file:
             content = file.readlines()
-        meta = content[0].strip().split()
+        meta = map(int, content[0].strip().split())
         bonusFactor = meta[4]
         noOfRides = meta[3]
         grid = Grid(rows=meta[0], columns=meta[1])
@@ -33,7 +33,7 @@ class Input:
         rides = []
         rideId = 0
         for rawRide in rawRides:
-            rawRide = rawRide.strip().split()
+            map(int, rawRide.strip().split())
             rides.append(Ride(rideId=rideId, startPosition=Position(row=rawRide[0], column=rawRide[1]), endPosition=Position(row=rawRide[2], column=rawRide[3]), earliestStartTime=rawRide[4], latestFinishTime=rawRide[5], bonusFactor=bonusFactor))
             rideId += 1
         vehicles = []
