@@ -3,9 +3,14 @@ from .output import Output
 class Processor:
 
     def find_best_ride(self, vehicle, availableRides):
-        if len(availableRides) == 0:
-            return None
-        return list(availableRides)[0]
+        bestRide = None
+        bestTime = 1000000000000000000
+        for ride in availableRides:
+            time = ride.length + max(vehicle.position.distance_to(ride.startPosition), ride.earliestStartTime)
+            if time < bestTime:
+                bestTime = time
+                bestRide = ride
+        return bestRide
 
     def process(self, input_):
         availableRides = set(input_.rides)
